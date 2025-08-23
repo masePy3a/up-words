@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>英単語クイズ</title>
+
+
+  <title>英単語クイズ</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('images/1.png');
+      background-size: cover;
+      background-position: center;
+      z-index: -1;
+    }
+
+    #hintImage {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      width: 100px;
+      border-radius: 8px;
+      z-index: 10;
+      display: none;
+    }
+
+    .quiz-container {
+      position: relative;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.85);
+      margin: 60px auto;
+      width: 320px;
+      border-radius: 10px;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .choices {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .score-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    #celebration {
+      margin-top: 20px;
+      font-size: 24px;
+      color: green;
+      animation: pop 0.5s ease-in-out;
+    }
+
+    #nextBtn {
+      margin-top: 20px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+  <script src="word.script.js"></script>
+</head>
+<body>
+
+  <div class="background"></div>
+  <img id="hintImage" src="" alt="ヒント画像">
+
+  <div class="quiz-container">
+    <h2 id="question">What is the meaning of: <span id="word"></span>?</h2>
+    <p id="example"></p>
+     <div class="audio-buttons">
+
+  <button id="sentenceAudioBtn">📖 例文の音声</button><button id="wordAudioBtn">🔊 単語の音声</button>
+</div>
+    
+
+    <div class="choices">
+      <button class="choice-btn"></button>
+      <button class="choice-btn"></button>
+      <button class="choice-btn"></button>
+    </div>
+
+    <div class="score-row">
+      <div>✅ 正解: <span id="correctCount">0</span></div>
+      <div>❌ 不正解: <span id="incorrectCount">0</span></div>
+      <button id="hintBtn">ヒント画像</button>
+    </div>
+
+    <div id="celebration" class="hidden">🎉 正解！</div>
+
+    <button id="nextBtn">次の問題へ</button>
+  
+    
+  </div>
+
+  <script>
+    let currentIndex = 0;
+    let correctCount = 0;
+    let incorrectCount = 0;
+
+    function loadQuiz() {
+      const quiz = quizData[currentIndex];
+      document.getElementById("word").textContent = quiz.word;
+      document.getElementById("example").textContent = "Example: " + quiz.example;
+      document.getElementById("hintImage").src = quiz.hintImage;
+      document.getElementById("hintImage").style.display = "none";
+
+      const choiceButtons = document.querySelectorAll(".choice-btn");
+      choiceButtons.forEach((btn, i) => {
+        btn.textContent = `${i + 1}. ${quiz.choices[i]}`;
+        btn.dataset.choice = quiz.choices[i];
+        btn.disabled = false;
+        btn.style.backgroundColor = "";
+      });
+
+      document.getElementById("wordAudioBtn").onclick = () => speakText(quiz.word);
+      document.getElementById("sentenceAudioBtn").onclick = () => speakText(quiz.example);
+
+      document.getElementById("celebration").classList.add("hidden");
+    }
+
+    function speakText(text, lang = "en-US") {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = lang;
+      speechSynthesis.speak(utterance);
+    }
+
+    document.querySelectorAll(".choice-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const selected = btn.dataset.choice;
+        const quiz = quizData[currentIndex];
+        if (selected === quiz.correct) {
+          correctCount++;
+          document.getElementById("correctCount").textContent = correctCount;
+          showCelebration();
+          btn.style.backgroundColor = "#c8f7c5";
+        } else {
+          incorrectCount++;
+          document.getElementById("incorrectCount").textContent = incorrectCount;
+          btn.style.backgroundColor = "#f7c5c5";
+        }
+        document.querySelectorAll(".choice-btn").forEach(b => b.disabled = true);
+      });
+    });
+
+    function showCelebration() {
+      const celebration = document.getElementById("celebration");
+      celebration.classList.remove("hidden");
+      setTimeout(() => {
+        celebration.classList.add("hidden");
+      }, 1000);
+    }
+
+    document.getElementById("hintBtn").addEventListener("click", () => {
+      const img = document.getElementById("hintImage");
+      img.style.display = (img.style.display === "none" || img.style.display === "") ? "block" : "none";
+    });
+
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      currentIndex++;
+      if (currentIndex < quizData.length) {
+        loadQuiz();
+      } else {
+        alert("すべての問題が終了しました！");
+        currentIndex = 0;
+        correctCount = 0;
+        incorrectCount = 0;
+        document.getElementById("correctCount").textContent = "0";
+        document.getElementById("incorrectCount").textContent = "0";
+        loadQuiz();
+      }
+    });
+
+    loadQuiz();
+  </script>
+</body>
+</html>
