@@ -7,7 +7,18 @@ const quizData = [
   { word: "house", example: "They live in a big house.", choices: ["車", "家", "公園"], correct: "家", hintImage: "images/house.png" },
   { word: "pen", example: "I write with a blue pen.", choices: ["鉛筆", "消しゴム", "ペン"], correct: "ペン", hintImage: "images/pen.png" },
   { word: "water", example: "Drink water to stay healthy.", choices: ["水", "ジュース", "牛乳"], correct: "水", hintImage: "images/water.png" },
-  { word: "sun", example: "The sun is shining brightly today.", choices: ["月", "星", "太陽"], correct: "太陽", hintImage: "images/sun.png" }
+  { word: "sun", example: "The sun is shining brightly today.", choices: ["月", "星", "太陽"], correct: "太陽", hintImage: "images/sun.png" },
+
+  // 🔽 追加分
+  { word: "car", example: "He drove his car to the countryside.", choices: ["車", "電車", "バス"], correct: "車", hintImage: "images/car.png" },
+  { word: "apple", example: "She ate a fresh apple after lunch.", choices: ["バナナ", "リンゴ", "みかん"], correct: "リンゴ", hintImage: "images/apple.png" },
+  { word: "classmate", example: "My classmate helped me with homework.", choices: ["先生", "同級生", "先輩"], correct: "同級生", hintImage: "images/classmate.png" },
+  { word: "principal", example: "The principal gave a speech at the ceremony.", choices: ["校長先生", "担任", "教頭"], correct: "校長先生", hintImage: "images/principal.png" },
+  { word: "club", example: "He joined the soccer club after school.", choices: ["部活", "授業", "委員会"], correct: "部活", hintImage: "images/club.png" },
+  { word: "math", example: "I find math challenging but fun.", choices: ["国語", "理科", "数学"], correct: "数学", hintImage: "images/math.png" },
+  { word: "station", example: "We met at the train station at 8 a.m.", choices: ["空港", "駅", "バス停"], correct: "駅", hintImage: "images/station.png" },
+  { word: "refrigerator", example: "Put the milk in the refrigerator.", choices: ["冷蔵庫", "棚", "電子レンジ"], correct: "冷蔵庫", hintImage: "images/refrigerator.png" },
+  { word: "ephemeral", example: "Life is ephemeral, so cherish every moment.", choices: ["永遠の", "つかの間の", "退屈な"], correct: "つかの間の", hintImage: "images/ephemeral.png" }
 ];
 
 let originalQuizData = [...quizData];
