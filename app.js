@@ -2,6 +2,24 @@
 let currentIndex = 0;
 let correctCount = 0;
 let incorrectCount = 0;
+let englishVoice = null;
+
+// ✅ iOS Safari対策：初回タッチで音声再生許可
+document.body.addEventListener("touchstart", () => {
+  const dummy = new SpeechSynthesisUtterance("");
+  dummy.lang = "en-US";
+  dummy.volume = 0;
+  speechSynthesis.speak(dummy);
+}, { once: true });
+
+// ✅ 音声エンジン読み込み完了時に英語音声を取得
+speechSynthesis.onvoiceschanged = () => {
+  const voices = speechSynthesis.getVoices();
+  englishVoice = voices.find(v =>
+    v.lang.startsWith("en") &&
+    (v.name.includes("English") || v.name.includes("US") || v.name.includes("United States"))
+  );
+};
 
 // ✅ 言語自動判定関数
 function detectLang(text) {
@@ -13,6 +31,13 @@ function speakText(text) {
   const lang = detectLang(text);
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = lang;
+  utterance.rate = 0.9;
+  utterance.pitch = 1.0;
+
+  if (lang === "en-US" && englishVoice) {
+    utterance.voice = englishVoice;
+  }
+
   speechSynthesis.cancel();
   speechSynthesis.speak(utterance);
 }
@@ -75,10 +100,6 @@ function loadQuiz() {
   // ✅ 音声ボタン更新（TTS）
   document.getElementById("wordAudioBtn").onclick = () => speakText(quiz.word);
   document.getElementById("sentenceAudioBtn").onclick = () => speakText(quiz.example);
-
-  // ✅ 音声ファイル再生（MP3がある場合）
-  // document.getElementById("wordAudioBtn").onclick = () => playAudio(quiz.wordAudio);
-  // document.getElementById("sentenceAudioBtn").onclick = () => playAudio(quiz.sentenceAudio);
 
   document.getElementById("celebration").classList.add("hidden");
 }
