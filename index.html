@@ -92,11 +92,35 @@
       0% { transform: scale(0.5); opacity: 0; }
       100% { transform: scale(1); opacity: 1; }
     }
+    .nav-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #0077cc;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 100;
+  }
+  .nav-button:hover {
+    background-color: #005fa3;
+  }
+
   </style>
   <script src="word.script.js"></script>
+
+
+  
+
+
 </head>
 <body>
-
+<a href="grammar.html" target="_blank">
+  <button class="nav-button">📘 文型の解説を見る</button>
+</a>
   <div class="background"></div>
   <img id="hintImage" src="" alt="ヒント画像">
 
@@ -104,10 +128,19 @@
     <h2 id="question">What is the meaning of: <span id="word"></span>?</h2>
     <p id="example"></p>
      <div class="audio-buttons">
+     <audio id="congratsAudio" src="sounds/congrats.mp3" preload="auto"></audio>
 
   <button id="sentenceAudioBtn">📖 例文の音声</button><button id="wordAudioBtn">🔊 単語の音声</button>
 </div>
+    <div id="quiz-container">
+  <div id="quiz-box">
+    <div id="word"></div>
+    <div id="example"></div>
+    <div id="structure"></div> <!-- ★ 文型表示エリア -->
+    <div id="choices"></div>
     
+  </div>
+</div>
 
     <div class="choices">
       <button class="choice-btn"></button>
