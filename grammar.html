@@ -2,67 +2,114 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>英文法の基本 - 5文型とは？</title>
+  <title>文型別例文集（クイズ連動）</title>
   <style>
     body {
-      font-family: sans-serif;
-      line-height: 1.6;
-      padding: 20px;
+      font-family: "Segoe UI", sans-serif;
       background-color: #f9f9f9;
+      margin: 0;
+      padding: 20px;
     }
-    h1, h2 {
+    h1 {
+      text-align: center;
       color: #333;
     }
     .structure-box {
-      background: #fff;
-      border-left: 5px solid #4CAF50;
-      padding: 10px 15px;
-      margin-bottom: 20px;
+      background-color: #fff;
+      border-left: 6px solid #4CAF50;
+      margin: 20px 0;
+      padding: 15px 20px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    .example {
-      font-style: italic;
+    .structure-box h2 {
+      margin-top: 0;
+      color: #4CAF50;
+    }
+    .structure-box p {
+      margin: 5px 0 10px;
       color: #555;
     }
-    a {
-      color: #0077cc;
+    ul {
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    .word {
+      font-weight: bold;
+      color: #2196F3;
     }
   </style>
 </head>
 <body>
-  <h1>英文法の基本：5文型とは？</h1>
-  <p>英語の文は、基本的に「5つの型（文型）」に分類できます。これを理解すると、文の構造や意味がぐっと分かりやすくなります。</p>
 
-  <div class="structure-box">
-    <h2>S + V（第1文型）</h2>
-    <p>主語 + 動詞だけで意味が通じる文。</p>
-    <p class="example">例：Birds fly.（鳥は飛ぶ）</p>
+  <h1>文型別例文集（クイズ連動）</h1>
+
+  <div class="structure-box" id="svc">
+    <h2>SVC（主語 + 動詞 + 補語）</h2>
+    <p>主語の状態や性質を表す文型です。</p>
+    <ul>
+      <li>The cat is sleeping on the sofa. <span class="word">（cat）</span></li>
+      <li>The sun is shining brightly today. <span class="word">（sun）</span></li>
+      <li>Life is ephemeral. <span class="word">（ephemeral）</span></li>
+    </ul>
   </div>
 
-  <div class="structure-box">
-    <h2>S + V + C（第2文型）</h2>
-    <p>主語 + 動詞 + 補語。主語の説明をする語が必要。</p>
-    <p class="example">例：She is a teacher.（彼女は先生です）</p>
+  <div class="structure-box" id="svo">
+    <h2>SVO（主語 + 動詞 + 目的語）</h2>
+    <p>動作が目的語に及ぶ文型です。</p>
+    <ul>
+      <li>My dog loves to play fetch. <span class="word">（dog）</span></li>
+      <li>She reads a book every night. <span class="word">（book）</span></li>
+      <li>He sat on the chair near the window. <span class="word">（chair）</span></li>
+      <li>They live in a big house. <span class="word">（house）</span></li>
+    </ul>
   </div>
 
-  <div class="structure-box">
-    <h2>S + V + O（第3文型）</h2>
-    <p>主語 + 動詞 + 目的語。何かに作用する動作。</p>
-    <p class="example">例：He reads books.（彼は本を読む）</p>
+  <div class="structure-box" id="svo-prep">
+    <h2>SVO + 前置詞句</h2>
+    <p>目的語のあとに場所や時間などを補足する句が続きます。</p>
+    <ul>
+      <li>He drove his car to the countryside. <span class="word">（car）</span></li>
+      <li>She ate a fresh apple after lunch. <span class="word">（apple）</span></li>
+      <li>My classmate helped me with homework. <span class="word">（classmate）</span></li>
+      <li>The principal gave a speech at the ceremony. <span class="word">（principal）</span></li>
+      <li>He joined the soccer club after school. <span class="word">（club）</span></li>
+    </ul>
   </div>
 
-  <div class="structure-box">
-    <h2>S + V + O + O（第4文型）</h2>
-    <p>主語 + 動詞 + 目的語 + 目的語。誰に何を、という構造。</p>
-    <p class="example">例：She gave me a gift.（彼女は私にプレゼントをくれた）</p>
+  <div class="structure-box" id="sv-prep">
+    <h2>SV + 前置詞句</h2>
+    <p>主語と動詞のあとに場所や手段などを示す句が続きます。</p>
+    <ul>
+      <li>I write with a blue pen. <span class="word">（pen）</span></li>
+      <li>We met at the train station at 8 a.m. <span class="word">（station）</span></li>
+    </ul>
   </div>
 
-  <div class="structure-box">
-    <h2>S + V + O + C（第5文型）</h2>
-    <p>主語 + 動詞 + 目的語 + 補語。目的語の説明をする語が必要。</p>
-    <p class="example">例：They made him captain.（彼らは彼をキャプテンにした）</p>
+  <div class="structure-box" id="voc">
+    <h2>V + O + 前置詞句</h2>
+    <p>動詞が目的語に作用し、さらに補足情報が加わる文型です。</p>
+    <ul>
+      <li>Put the milk in the refrigerator. <span class="word">（refrigerator）</span></li>
+    </ul>
   </div>
 
-  <p>👉 <a href="index.html">クイズに戻る</a></p>
+  <div class="structure-box" id="svoc">
+    <h2>SVOC（主語 + 動詞 + 目的語 + 補語）</h2>
+    <p>目的語の状態や性質を補語で説明する文型です。</p>
+    <ul>
+      <li>I find math challenging but fun. <span class="word">（math）</span></li>
+    </ul>
+  </div>
+
+  <div class="structure-box" id="voto">
+    <h2>V + O + to不定詞</h2>
+    <p>目的語に「〜するように」と働きかける文型です。</p>
+    <ul>
+      <li>Drink water to stay healthy. <span class="word">（water）</span></li>
+    </ul>
+  </div>
+
 </body>
 </html>
